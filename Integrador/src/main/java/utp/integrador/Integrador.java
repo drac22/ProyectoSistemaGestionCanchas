@@ -19,9 +19,5 @@ public class Integrador {
         System.out.println(nuevoUsuario.getId());
         System.out.println(nuevoUsuario.toString());
         
-        Cliente nuevoCliente = new Cliente("Monica", "Gutierrez Salazar", "monica123@gmail.com", "moni", "mogusa", "987654321", "Av. Los trigales 123");
-        nuevoCliente.setId(1);
-        System.out.println(nuevoCliente.getId());
-        System.out.println(nuevoCliente.toString());
     }
 }

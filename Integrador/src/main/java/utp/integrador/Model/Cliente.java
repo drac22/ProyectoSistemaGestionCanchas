@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package utp.integrador.Model;
 
-/**
- *
- * @author David
- */
 public class Cliente extends Persona {
 
     private String direccion;
@@ -28,8 +20,8 @@ public class Cliente extends Persona {
         super(id);
     }
 
-    public Cliente(String nombres, String apellidos, String correo, String username, String password, String celular, String direccion) {
-        super(nombres, apellidos, correo, username, password, celular);
+    public Cliente(String nombres, String apellidos, String correo, String celular, String direccion) {
+        super(nombres, apellidos, correo, celular);
         this.direccion = direccion;
     }
     
@@ -45,8 +37,6 @@ public class Cliente extends Persona {
                 + ", nombres='" + getNombres() + "'"
                 + ", apellidos='" + getApellidos() + "'"
                 + ", correo='" + getCorreo() + "'"
-                + ", username='" + getUsername() + "'"
-                + ", password='" + getPassword() + "'"
                 + ", celular='" + getCelular() + "'"
                 + ", direccion='" + direccion + "'"
                 + '}';

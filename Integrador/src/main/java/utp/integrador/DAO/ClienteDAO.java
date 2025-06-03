@@ -27,8 +27,6 @@ public class ClienteDAO implements IClienteDAO {
                 cliente.setNombres(rs.getString("nombres"));
                 cliente.setApellidos(rs.getString("apellidos"));
                 cliente.setCorreo(rs.getString("correo"));
-                cliente.setUsername(rs.getString("username"));
-                cliente.setPassword(rs.getString("password"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setDireccion(rs.getString("direccion"));
                 clientes.add(cliente);
@@ -55,8 +53,6 @@ public class ClienteDAO implements IClienteDAO {
                 cliente.setNombres(rs.getString("nombres"));
                 cliente.setApellidos(rs.getString("apellidos"));
                 cliente.setCorreo(rs.getString("correo"));
-                cliente.setUsername(rs.getString("username"));
-                cliente.setPassword(rs.getString("password"));
                 cliente.setCelular(rs.getString("celular"));
                 cliente.setDireccion(rs.getString("direccion"));
                 return cliente;
@@ -71,16 +67,14 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente agregarCliente(Cliente cliente) {
         PreparedStatement ps;
-        var sql = "INSERT INTO tbl_cliente(nombres, apellidos, correo, username, password, celular, direccion) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO tbl_cliente(nombres, apellidos, correo, username, password, celular, direccion) VALUES(?, ?, ?, ?, ?)";
         try (Connection con = Conexion.getConexion()) {
             ps = con.prepareStatement(sql);
             ps.setString(1, cliente.getNombres());
             ps.setString(2, cliente.getApellidos());
             ps.setString(3, cliente.getCorreo());
-            ps.setString(4, cliente.getUsername());
-            ps.setString(5, cliente.getPassword());
-            ps.setString(6, cliente.getCelular());
-            ps.setString(7, cliente.getDireccion());
+            ps.setString(4, cliente.getCelular());
+            ps.setString(5, cliente.getDireccion());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al agregar un Cliente: " + e.getMessage());
@@ -92,17 +86,15 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public Cliente modificarCliente(Cliente cliente) {
         PreparedStatement ps;
-        var sql = "UPDATE tbl_cliente SET nombres=?, apellidos=?, correo=?, username=?, password=?, celular=?, direccion=? WHERE id=?";
+        var sql = "UPDATE tbl_cliente SET nombres=?, apellidos=?, correo=?, celular=?, direccion=? WHERE id=?";
         try (Connection con = Conexion.getConexion()) {
             ps = con.prepareStatement(sql);
             ps.setString(1, cliente.getNombres());
             ps.setString(2, cliente.getApellidos());
             ps.setString(3, cliente.getCorreo());
-            ps.setString(4, cliente.getUsername());
-            ps.setString(5, cliente.getPassword());
-            ps.setString(6, cliente.getCelular());
-            ps.setString(7, cliente.getDireccion());
-            ps.setInt(8, cliente.getId());
+            ps.setString(4, cliente.getCelular());
+            ps.setString(5, cliente.getDireccion());
+            ps.setInt(6, cliente.getId());
             ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error al modificar el Cliente: " + e.getMessage());
@@ -125,20 +117,4 @@ public class ClienteDAO implements IClienteDAO {
         }
         return false;
     }
-
-//    public static void main(String[] args) {
-//        IClienteDAO clienteDAO = new ClienteDAO();
-//
-//        var clientes = clienteDAO.listarClientes();
-//        clientes.forEach(System.out::println);
-//        
-//        var buscarCliente = clienteDAO.buscarClienteById(2);
-//        if (buscarCliente != null) {
-//            System.out.println("Cliente encontrado");
-//            System.out.println(buscarCliente);
-//        } else{
-//            System.out.println("Cliente no encontrado");
-//        }
-//
-//    }
 }

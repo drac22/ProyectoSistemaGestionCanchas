@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package utp.integrador.View;
 
 import java.awt.CardLayout;
@@ -9,30 +5,35 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import utp.integrador.Model.Usuario;
 
-/**
- *
- * @author David
- */
 public class JFPrincipal extends javax.swing.JFrame {
 
     static CardLayout cardLayout;
     private Usuario usuario;
+    JPanel panelVacio = new JPanel();
     private JPReserva JPReserva;
     private JPCliente JPCliente;
+    private JPEmpleado JPEmpleado;
 
     public JFPrincipal(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
         mostrarDatosUsuario();
         bottonEmpleado.setVisible(false);
+        if (usuario.getRol().equals("admin")) {
+            bottonEmpleado.setVisible(true);
+        }
 
         cardLayout = (CardLayout) panelDinamico.getLayout();
 
         JPReserva = new JPReserva();
         JPCliente = new JPCliente();
+        JPEmpleado = new JPEmpleado();
 
+        panelDinamico.add(panelVacio, "vacio");
         panelDinamico.add(JPReserva, "JPReserva");
         panelDinamico.add(JPCliente, "JPCliente");
+        panelDinamico.add(JPEmpleado, "JPEmpleado");
+        cardLayout.show(panelDinamico, "vacio");
     }
 
     /**
@@ -81,11 +82,11 @@ public class JFPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblNombresApellidos.setText("jLabel1");
+        lblNombresApellidos.setText("...");
 
-        lblRol.setText("jLabel2");
+        lblRol.setText("...");
 
-        bottonSalir.setText("Salir");
+        bottonSalir.setText("SALIR");
         bottonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bottonSalirActionPerformed(evt);
@@ -102,11 +103,11 @@ public class JFPrincipal extends javax.swing.JFrame {
                         .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelEstaticoLayout.createSequentialGroup()
                                 .addGap(71, 71, 71)
-                                .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bottonEmpleado)
-                                    .addComponent(bottonReservar)
-                                    .addComponent(bottonClientes)
-                                    .addComponent(bottonReporte)))
+                                .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(bottonEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bottonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bottonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bottonReservar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panelEstaticoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,9 +167,7 @@ public class JFPrincipal extends javax.swing.JFrame {
 
     private void bottonEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonEmpleadoActionPerformed
         // TODO add your handling code here:
-        if (usuario.getRol().equals("admin")) {
-            bottonEmpleado.setVisible(true);
-        }
+        cardLayout.show(panelDinamico, "JPEmpleado");
     }//GEN-LAST:event_bottonEmpleadoActionPerformed
 
     private void bottonClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonClientesActionPerformed

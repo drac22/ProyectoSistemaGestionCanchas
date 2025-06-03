@@ -54,11 +54,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="bottonEmpleado" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bottonReservar" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bottonClientes" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bottonReporte" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="bottonEmpleado" max="32767" attributes="0"/>
+                                      <Component id="bottonReporte" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="bottonClientes" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="bottonReservar" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -134,17 +134,17 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblNombresApellidos">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel1"/>
+            <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblRol">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jLabel2"/>
+            <Property name="text" type="java.lang.String" value="..."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="bottonSalir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Salir"/>
+            <Property name="text" type="java.lang.String" value="SALIR"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bottonSalirActionPerformed"/>

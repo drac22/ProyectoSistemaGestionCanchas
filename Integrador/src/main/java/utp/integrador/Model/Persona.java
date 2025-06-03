@@ -6,8 +6,6 @@ public class Persona {
     private String nombres;
     private String apellidos;
     private String correo;
-    private String username;
-    private String password;
     private String celular;
 
     public Persona(){
@@ -23,17 +21,13 @@ public class Persona {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
-        this.username = username;
-        this.password = password;
         this.celular = celular;
     }
     
-    public Persona(String nombres, String apellidos, String correo, String username, String password, String celular) {
+    public Persona(String nombres, String apellidos, String correo, String celular) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.correo = correo;
-        this.username = username;
-        this.password = password;
         this.celular = celular;
     }
 
@@ -69,22 +63,6 @@ public class Persona {
         this.correo = correo;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getCelular() {
         return celular;
     }
@@ -95,7 +73,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", correo=" + correo + ", username=" + username + ", password=" + password + ", celular=" + celular + '}';
+        return "Persona{" + "id=" + id + ", nombres=" + nombres + ", apellidos=" + apellidos + ", correo=" + correo + ", celular=" + celular + '}';
     }
-
 }
