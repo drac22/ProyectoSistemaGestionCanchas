@@ -25,8 +25,8 @@ public class Cliente extends Persona {
         this.direccion = direccion;
     }
     
-    public Cliente(int id, String nombres, String apellidos, String correo, String username, String password, String celular, String direccion) {
-        super(id, nombres, apellidos, correo, username, password, celular);
+    public Cliente(int id, String nombres, String apellidos, String correo, String celular, String direccion) {
+        super(id, nombres, apellidos, correo, celular);
         this.direccion = direccion;
     }
 

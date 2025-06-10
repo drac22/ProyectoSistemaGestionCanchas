@@ -11,11 +11,18 @@ public class Usuario extends Persona {
     }
 
     public Usuario(int id) {
-        super(id);
+        super();
     }
 
     public Usuario(String nombres, String apellidos, String correo, String username, String password, String celular, String rol) {
         super(nombres, apellidos, correo, celular);
+        this.rol = rol;
+        this.username = username;
+        this.password = password;
+    }
+    
+    public Usuario(int id, String nombres, String apellidos, String correo, String username, String password, String celular, String rol) {
+        super(id, nombres, apellidos, correo, celular);
         this.rol = rol;
         this.username = username;
         this.password = password;

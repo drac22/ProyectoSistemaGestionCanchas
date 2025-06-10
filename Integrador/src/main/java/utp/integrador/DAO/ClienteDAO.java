@@ -15,12 +15,10 @@ public class ClienteDAO implements IClienteDAO {
     @Override
     public List<Cliente> listarClientes() {
         List<Cliente> clientes = new ArrayList<>();
-        PreparedStatement ps;
-        ResultSet rs;
         var sql = "SELECT * FROM tbl_cliente ORDER BY id";
         try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 var cliente = new Cliente();
                 cliente.setId(rs.getInt("id"));
@@ -40,11 +38,10 @@ public class ClienteDAO implements IClienteDAO {
     //buscar
     @Override
     public Cliente buscarClienteById(int id) {
-        PreparedStatement ps;
         ResultSet rs;
         var sql = "SELECT * FROM tbl_cliente WHERE id = ?";
         try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) { // next pregeunta si hay registros
@@ -66,10 +63,9 @@ public class ClienteDAO implements IClienteDAO {
     //insertar
     @Override
     public Cliente agregarCliente(Cliente cliente) {
-        PreparedStatement ps;
-        var sql = "INSERT INTO tbl_cliente(nombres, apellidos, correo, username, password, celular, direccion) VALUES(?, ?, ?, ?, ?)";
+        var sql = "INSERT INTO tbl_cliente(nombres, apellidos, correo, celular, direccion) VALUES(?, ?, ?, ?, ?)";
         try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cliente.getNombres());
             ps.setString(2, cliente.getApellidos());
             ps.setString(3, cliente.getCorreo());
@@ -85,10 +81,9 @@ public class ClienteDAO implements IClienteDAO {
     //actualizar
     @Override
     public Cliente modificarCliente(Cliente cliente) {
-        PreparedStatement ps;
         var sql = "UPDATE tbl_cliente SET nombres=?, apellidos=?, correo=?, celular=?, direccion=? WHERE id=?";
         try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, cliente.getNombres());
             ps.setString(2, cliente.getApellidos());
             ps.setString(3, cliente.getCorreo());
@@ -105,10 +100,9 @@ public class ClienteDAO implements IClienteDAO {
     //eliminar
     @Override
     public boolean eliminarCliente(int id) {
-        PreparedStatement ps;
         var sql = "DELETE FROM tbl_cliente WHERE id=?";
         try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0;
