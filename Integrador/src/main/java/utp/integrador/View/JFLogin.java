@@ -1,16 +1,18 @@
 package utp.integrador.View;
 
 import javax.swing.*;
+import utp.integrador.Controller.ClienteController;
+import utp.integrador.DAO.ClienteDAO;
 import utp.integrador.DAO.IUsuarioDAO;
 import utp.integrador.DAO.UsuarioDAO;
 
 public class JFLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form NewJFrame
-     */
-    public JFLogin() {
+    private ClienteController clienteController;
+    
+    public JFLogin(ClienteController clienteController) {
         initComponents();
+        this.clienteController = clienteController;
     }
 
     /**
@@ -126,7 +128,7 @@ public class JFLogin extends javax.swing.JFrame {
         if (nuevoUsuario != null
                 && usuario.equals(nuevoUsuario.getUsername())
                 && password.equals(nuevoUsuario.getPassword())) {
-            new JFPrincipal(nuevoUsuario).setVisible(true); // Abre la ventana principal
+            new JFPrincipal(nuevoUsuario, clienteController).setVisible(true); // Abre la ventana principal
             dispose(); // Cierra el login
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -164,11 +166,12 @@ public class JFLogin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        ClienteDAO dao = new ClienteDAO();
+        ClienteController clienteController = new ClienteController(dao); 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFLogin().setVisible(true);
+                new JFLogin(clienteController).setVisible(true);
             }
         });
     }

@@ -12,7 +12,7 @@ import utp.integrador.Model.Usuario;
 public class JPCliente extends javax.swing.JPanel {
 
     private ClienteController clienteController;
-
+        
     public JPCliente(ClienteController clienteController) {
         this.clienteController = clienteController;
         initComponents();

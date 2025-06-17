@@ -10,10 +10,6 @@ public class Usuario extends Persona {
         super();
     }
 
-    public Usuario(int id) {
-        super();
-    }
-
     public Usuario(String nombres, String apellidos, String correo, String username, String password, String celular, String rol) {
         super(nombres, apellidos, correo, celular);
         this.rol = rol;

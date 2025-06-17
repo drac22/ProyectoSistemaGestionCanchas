@@ -13,14 +13,16 @@ public class JFPrincipal extends javax.swing.JFrame {
 
     static CardLayout cardLayout;
     private Usuario usuario;
+    private ClienteController clienteController;
     JPanel panelVacio = new JPanel();
     private JPReserva JPReserva;
     private JPCliente JPCliente;
     private JPEmpleado JPEmpleado;
 
-    public JFPrincipal(Usuario usuario) {
+    public JFPrincipal(Usuario usuario, ClienteController clienteController) {
         initComponents();
         this.usuario = usuario;
+        this.clienteController = clienteController;
         mostrarDatosUsuario();
         bottonEmpleado.setVisible(false);
         if (usuario.getRol().equals("admin")) {
@@ -29,10 +31,8 @@ public class JFPrincipal extends javax.swing.JFrame {
 
         cardLayout = (CardLayout) panelDinamico.getLayout();
 
-        JPReserva = new JPReserva();
+        JPReserva = new JPReserva(usuario, clienteController);
 
-        ClienteDAO clienteDAO = new ClienteDAO();
-        ClienteController clienteController = new ClienteController(clienteDAO);
         JPCliente = new JPCliente(clienteController);
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
@@ -182,7 +182,7 @@ public class JFPrincipal extends javax.swing.JFrame {
 
     private void bottonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonSalirActionPerformed
         // TODO add your handling code here:
-        new JFLogin().setVisible(true); // Abre la ventana principal
+        new JFLogin(clienteController).setVisible(true); // Abre la ventana principal
         dispose();
     }//GEN-LAST:event_bottonSalirActionPerformed
 
@@ -190,7 +190,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         lblNombresApellidos.setText("Bienvenido, " + usuario.getNombres() + " " + usuario.getApellidos());
         lblRol.setText("Rol: " + usuario.getRol());
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bottonClientes;
     private javax.swing.JButton bottonEmpleado;
