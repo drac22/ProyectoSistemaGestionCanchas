@@ -1,5 +1,6 @@
 package utp.integrador.Controller;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
@@ -13,20 +14,29 @@ public class ReservaController {
     public ReservaController(ReservaDAO reservaDAO) {
         this.reservaDAO = reservaDAO;
     }
-    
-    public void agregarReserva(Reserva reserva){
-        reservaDAO.agregarReserva();
+
+    public void agregarReserva(Reserva reserva) {
+        reservaDAO.agregarReserva(reserva);
     }
 
     public boolean esHorarioDisponible(int canchaId, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
         return reservaDAO.reservaDisponible(canchaId, fecha, horaInicio, horaFin);
     }
-
+    
     public double calcularMonto(LocalTime horaInicio, LocalTime horaFin) {
-        double tarifaPorHora = 100.0;
+        double tarifaPorMediaHora;
+        if (horaInicio.isBefore(LocalTime.of(18, 0))) {
+            tarifaPorMediaHora = 40.0;
+        } else {
+            tarifaPorMediaHora = 50.0;
+        }
 
-        long horas = ChronoUnit.HOURS.between(horaInicio, horaFin);
+        Duration duracion = Duration.between(horaInicio, horaFin);
+        long minutos = duracion.toMinutes();
 
-        return horas * tarifaPorHora;
+        double bloquesDeMediaHora = minutos / 30.0;
+        double total = bloquesDeMediaHora * tarifaPorMediaHora;
+
+        return total;
     }
 }

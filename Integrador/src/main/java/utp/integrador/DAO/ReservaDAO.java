@@ -14,38 +14,31 @@ public class ReservaDAO {
     public boolean reservaDisponible(int canchaId, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
         String sql = "SELECT COUNT(*) FROM tbl_reserva "
                 + "WHERE idCancha = ? AND fecha = ? "
-                + "AND (? >= horaInicio AND ? < horaFinal "
-                + "OR ? > horaInicio AND ? <= horaFinal "
-                + "OR horaInicio >= ? AND horaFinal <= ?);";
-        PreparedStatement ps;
-        ResultSet rs;
+                + "AND (? < horaFinal AND ? > horaInicio)";
 
-        try (Connection con = Conexion.getConexion()) {
-            ps = con.prepareStatement(sql);
+        try (Connection con = Conexion.getConexion(); PreparedStatement ps = con.prepareStatement(sql)) {
+
             ps.setInt(1, canchaId);
             ps.setDate(2, java.sql.Date.valueOf(fecha));
             ps.setTime(3, java.sql.Time.valueOf(horaInicio));
             ps.setTime(4, java.sql.Time.valueOf(horaFin));
-            ps.setTime(5, java.sql.Time.valueOf(horaInicio));
-            ps.setTime(6, java.sql.Time.valueOf(horaFin));
-            ps.setTime(7, java.sql.Time.valueOf(horaInicio));
-            ps.setTime(8, java.sql.Time.valueOf(horaFin));
-            rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) == 0;
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    int count = rs.getInt(1);
+                    return count == 0;
+                }
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
     }
 
-    public Reserva agregarReserva() {
+    public Reserva agregarReserva(Reserva reserva) {
         PreparedStatement ps;
         var sql = "INSERT INTO tbl_reserva(monto, fecha, horaInicio, horaFinal, idCliente, idCancha, idUsuario) VALUES(?, ?, ?, ?, ?, ?, ?)";
-        Reserva reserva = new Reserva();
         try (Connection con = Conexion.getConexion()) {
-
             ps = con.prepareStatement(sql);
             ps.setDouble(1, reserva.getMonto());
             ps.setDate(2, java.sql.Date.valueOf(reserva.getFecha()));
@@ -54,7 +47,6 @@ public class ReservaDAO {
             ps.setInt(5, reserva.getIdCliente());
             ps.setInt(6, reserva.getIdCancha());
             ps.setInt(7, reserva.getIdUsuario());
-
             ps.executeUpdate();
             System.out.println("Reserva agregada correctamente.");
         } catch (SQLException e) {

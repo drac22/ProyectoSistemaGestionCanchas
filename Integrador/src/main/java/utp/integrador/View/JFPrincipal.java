@@ -14,10 +14,12 @@ public class JFPrincipal extends javax.swing.JFrame {
     static CardLayout cardLayout;
     private Usuario usuario;
     private ClienteController clienteController;
+    
     JPanel panelVacio = new JPanel();
     private JPReserva JPReserva;
     private JPCliente JPCliente;
     private JPEmpleado JPEmpleado;
+    private JPReporte JPReporte;
 
     public JFPrincipal(Usuario usuario, ClienteController clienteController) {
         initComponents();
@@ -32,6 +34,8 @@ public class JFPrincipal extends javax.swing.JFrame {
         cardLayout = (CardLayout) panelDinamico.getLayout();
 
         JPReserva = new JPReserva(usuario, clienteController);
+        
+        JPReporte = new JPReporte();
 
         JPCliente = new JPCliente(clienteController);
 
@@ -43,6 +47,7 @@ public class JFPrincipal extends javax.swing.JFrame {
         panelDinamico.add(JPReserva, "JPReserva");
         panelDinamico.add(JPCliente, "JPCliente");
         panelDinamico.add(JPEmpleado, "JPEmpleado");
+        panelDinamico.add(JPReporte, "JPReporte");
         cardLayout.show(panelDinamico, "vacio");
     }
 
@@ -79,6 +84,11 @@ public class JFPrincipal extends javax.swing.JFrame {
         });
 
         bottonReporte.setText("REPORTE");
+        bottonReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bottonReporteActionPerformed(evt);
+            }
+        });
 
         bottonEmpleado.setText("EMPLEADOS");
         bottonEmpleado.addActionListener(new java.awt.event.ActionListener() {
@@ -181,16 +191,20 @@ public class JFPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bottonClientesActionPerformed
 
     private void bottonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonSalirActionPerformed
-        // TODO add your handling code here:
-        new JFLogin(clienteController).setVisible(true); // Abre la ventana principal
+        new JFLogin(clienteController).setVisible(true);
         dispose();
     }//GEN-LAST:event_bottonSalirActionPerformed
+
+    private void bottonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonReporteActionPerformed
+        // TODO add your handling code here:
+        cardLayout.show(panelDinamico, "JPReporte");
+    }//GEN-LAST:event_bottonReporteActionPerformed
 
     private void mostrarDatosUsuario() {
         lblNombresApellidos.setText("Bienvenido, " + usuario.getNombres() + " " + usuario.getApellidos());
         lblRol.setText("Rol: " + usuario.getRol());
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bottonClientes;
     private javax.swing.JButton bottonEmpleado;

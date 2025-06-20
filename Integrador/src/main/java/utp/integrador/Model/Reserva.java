@@ -90,7 +90,4 @@ public class Reserva {
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
-
-    
-    
 }

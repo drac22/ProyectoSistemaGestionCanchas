@@ -11,7 +11,9 @@ utp\integrador\DAO\UsuarioDAO.class
 utp\integrador\View\JPCliente$1.class
 utp\integrador\View\JFLogin$3.class
 utp\integrador\View\JPEmpleado$8.class
+utp\integrador\View\JPReporteOperativo$1.class
 utp\integrador\DAO\ClienteDAO.class
+utp\integrador\View\JFPrincipal$5.class
 utp\integrador\View\JPReserva.class
 utp\integrador\Controller\ClienteController.class
 utp\integrador\View\JPReserva$6.class
@@ -24,8 +26,10 @@ utp\integrador\Model\Conexion.class
 utp\integrador\DAO\ReservaDAO.class
 utp\integrador\View\JPCliente$2.class
 utp\integrador\View\JPEmpleado$4.class
+utp\integrador\View\JPReserva$12.class
 utp\integrador\View\JFPrincipal$1.class
 utp\integrador\View\JPReporte$1.class
+utp\integrador\View\JPReporteOperativo.class
 utp\integrador\View\JPCliente$5.class
 utp\integrador\Controller\ReservaController.class
 utp\integrador\View\JFLogin$2.class
@@ -35,8 +39,11 @@ utp\integrador\Controller\UsuarioController.class
 utp\integrador\View\JPCliente$7.class
 utp\integrador\View\JFSeleccionCliente$1.class
 utp\integrador\View\JFLogin.class
+utp\integrador\View\JPReserva$11.class
 utp\integrador\Model\Persona.class
 utp\integrador\View\JPEmpleado$3.class
+utp\integrador\View\JPReserva$9.class
+utp\integrador\View\JPReporteFinanciero$1.class
 utp\integrador\View\JFPrincipal$2.class
 utp\integrador\View\JPCliente$4.class
 utp\integrador\View\JFPrincipal.class
@@ -47,10 +54,12 @@ utp\integrador\View\JPEmpleado$6.class
 utp\integrador\View\JPCliente$6.class
 utp\integrador\View\JFSeleccionCliente$2.class
 utp\integrador\View\JPReserva$8.class
+utp\integrador\View\JPReporteFinanciero.class
 utp\integrador\View\JPEmpleado.class
 utp\integrador\View\JFPrincipal$3.class
 utp\integrador\View\JPCliente$3.class
 utp\integrador\View\JPReserva$2.class
 utp\integrador\View\JPEmpleado$2.class
+utp\integrador\View\JPReserva$10.class
 utp\integrador\View\JPReserva$5.class
 utp\integrador\View\JPReporte.class
