@@ -11,10 +11,10 @@ import utp.integrador.Model.Usuario;
 
 public class JPCliente extends javax.swing.JPanel {
 
-    private ClienteController clienteController;
-        
-    public JPCliente(ClienteController clienteController) {
-        this.clienteController = clienteController;
+    ClienteDAO dao = new ClienteDAO();
+    private final ClienteController clienteController = new ClienteController(dao);
+
+    public JPCliente() {
         initComponents();
         actualizarTablaClientes();
         limpiarFormulario();
@@ -292,7 +292,7 @@ public class JPCliente extends javax.swing.JPanel {
             String direccion = txtDireccionC.getText().trim();
 
             clienteController.modificarCliente(new Cliente(idCliente, nombres, apellidos, correo, celular, direccion));
-            
+
             if (!validarDatos(nombres, apellidos, correo, celular, direccion)) {
                 JOptionPane.showMessageDialog(this, "Por favor complete correctamente todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;

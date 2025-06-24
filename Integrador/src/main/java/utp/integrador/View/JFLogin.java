@@ -7,12 +7,13 @@ import utp.integrador.DAO.IUsuarioDAO;
 import utp.integrador.DAO.UsuarioDAO;
 
 public class JFLogin extends javax.swing.JFrame {
-
-    private ClienteController clienteController;
     
-    public JFLogin(ClienteController clienteController) {
+    ClienteDAO dao = new ClienteDAO();
+    private ClienteController clienteController = new ClienteController(dao);
+    
+
+    public JFLogin() {
         initComponents();
-        this.clienteController = clienteController;
     }
 
     @SuppressWarnings("unchecked")
@@ -122,7 +123,7 @@ public class JFLogin extends javax.swing.JFrame {
         if (nuevoUsuario != null
                 && usuario.equals(nuevoUsuario.getUsername())
                 && password.equals(nuevoUsuario.getPassword())) {
-            new JFPrincipal(nuevoUsuario, clienteController).setVisible(true);
+            new JFPrincipal(nuevoUsuario).setVisible(true);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -157,12 +158,11 @@ public class JFLogin extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        ClienteDAO dao = new ClienteDAO();
-        ClienteController clienteController = new ClienteController(dao); 
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFLogin(clienteController).setVisible(true);
+                new JFLogin().setVisible(true);
             }
         });
     }

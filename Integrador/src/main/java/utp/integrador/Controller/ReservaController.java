@@ -3,8 +3,10 @@ package utp.integrador.Controller;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
 import utp.integrador.DAO.ReservaDAO;
+import utp.integrador.Model.ReporteFinancieroDTO;
+import utp.integrador.Model.ReporteOperativoDTO;
 import utp.integrador.Model.Reserva;
 
 public class ReservaController {
@@ -17,6 +19,14 @@ public class ReservaController {
 
     public void agregarReserva(Reserva reserva) {
         reservaDAO.agregarReserva(reserva);
+    }
+    
+    public List<ReporteFinancieroDTO> mostrarReporteFinanciero(){
+        return reservaDAO.mostrarReporteFinanciero();
+    }
+    
+    public List<ReporteOperativoDTO> mostrarReporteOperativo(){
+        return reservaDAO.mostrarReporteOperativo();
     }
 
     public boolean esHorarioDisponible(int canchaId, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {

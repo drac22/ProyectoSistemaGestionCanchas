@@ -1,7 +1,6 @@
 package utp.integrador.View;
 
 import java.awt.CardLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import utp.integrador.Controller.ClienteController;
 import utp.integrador.Controller.UsuarioController;
@@ -12,35 +11,34 @@ import utp.integrador.Model.Usuario;
 public class JFPrincipal extends javax.swing.JFrame {
 
     static CardLayout cardLayout;
-    private Usuario usuario;
-    private ClienteController clienteController;
+    private final Usuario usuario;
+    
+    ClienteDAO dao = new ClienteDAO();
+    private final ClienteController clienteController = new ClienteController(dao);
+    
+    UsuarioDAO usuarioDAO = new UsuarioDAO();
+    UsuarioController usuarioController = new UsuarioController(usuarioDAO);
     
     JPanel panelVacio = new JPanel();
-    private JPReserva JPReserva;
-    private JPCliente JPCliente;
-    private JPEmpleado JPEmpleado;
-    private JPReporte JPReporte;
+    private final JPReserva JPReserva;
+    private final JPCliente JPCliente;
+    private final JPEmpleado JPEmpleado;
+    private final JPReporte JPReporte;
 
-    public JFPrincipal(Usuario usuario, ClienteController clienteController) {
+    public JFPrincipal(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
-        this.clienteController = clienteController;
         mostrarDatosUsuario();
+
         bottonEmpleado.setVisible(false);
         if (usuario.getRol().equals("admin")) {
             bottonEmpleado.setVisible(true);
         }
 
         cardLayout = (CardLayout) panelDinamico.getLayout();
-
         JPReserva = new JPReserva(usuario, clienteController);
-        
         JPReporte = new JPReporte();
-
-        JPCliente = new JPCliente(clienteController);
-
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        UsuarioController usuarioController = new UsuarioController(usuarioDAO);
+        JPCliente = new JPCliente();
         JPEmpleado = new JPEmpleado(usuarioController);
 
         panelDinamico.add(panelVacio, "vacio");
@@ -191,7 +189,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bottonClientesActionPerformed
 
     private void bottonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bottonSalirActionPerformed
-        new JFLogin(clienteController).setVisible(true);
+        new JFLogin().setVisible(true);
         dispose();
     }//GEN-LAST:event_bottonSalirActionPerformed
 

@@ -26,7 +26,6 @@ utp\integrador\Model\Conexion.class
 utp\integrador\DAO\ReservaDAO.class
 utp\integrador\View\JPCliente$2.class
 utp\integrador\View\JPEmpleado$4.class
-utp\integrador\View\JPReserva$12.class
 utp\integrador\View\JFPrincipal$1.class
 utp\integrador\View\JPReporte$1.class
 utp\integrador\View\JPReporteOperativo.class
@@ -44,9 +43,11 @@ utp\integrador\Model\Persona.class
 utp\integrador\View\JPEmpleado$3.class
 utp\integrador\View\JPReserva$9.class
 utp\integrador\View\JPReporteFinanciero$1.class
+utp\integrador\Model\ReporteOperativoDTO.class
 utp\integrador\View\JFPrincipal$2.class
 utp\integrador\View\JPCliente$4.class
 utp\integrador\View\JFPrincipal.class
+utp\integrador\Model\ReporteFinancieroDTO.class
 utp\integrador\View\JPReserva$1.class
 utp\integrador\Model\Reserva.class
 utp\integrador\View\JPCliente.class

@@ -6,7 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import utp.integrador.Model.Conexion;
+import utp.integrador.Model.ReporteFinancieroDTO;
+import utp.integrador.Model.ReporteOperativoDTO;
 import utp.integrador.Model.Reserva;
 
 public class ReservaDAO {
@@ -55,4 +59,83 @@ public class ReservaDAO {
 
         return reserva;
     }
+
+    public List<ReporteFinancieroDTO> mostrarReporteFinanciero() {
+        List<ReporteFinancieroDTO> reporte = new ArrayList<>();
+        var sql = "SELECT \n"
+                + "    r.idReserva,\n"
+                + "    u.nombres AS nombreUsuario,\n"
+                + "    c.nombres AS nombreCliente,\n"
+                + "    r.fecha,\n"
+                + "    r.monto\n"
+                + "FROM \n"
+                + "    tbl_reserva r\n"
+                + "JOIN \n"
+                + "    tbl_cliente c ON r.idCliente = c.id\n"
+                + "JOIN \n"
+                + "    tbl_usuario u ON r.idUsuario = u.id;";
+
+        try (Connection con = Conexion.getConexion()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ReporteFinancieroDTO dto = new ReporteFinancieroDTO(
+                        rs.getInt("idReserva"),
+                        rs.getString("nombreUsuario"),
+                        rs.getString("nombreCliente"),
+                        rs.getDate("fecha").toLocalDate(),
+                        rs.getDouble("monto")
+                );
+                reporte.add(dto);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al mostrar reservas: " + e.getMessage());
+        }
+        return reporte;
+    }
+
+    public List<ReporteOperativoDTO> mostrarReporteOperativo() {
+        List<ReporteOperativoDTO> reporte = new ArrayList<>();
+        String sql = "SELECT \n"
+                + "    c.idCancha AS idCancha,\n"
+                + "    c.ubicacion,\n"
+                + "    COUNT(r.idReserva) AS numeroVecesAlquilada,\n"
+                + "    SUM(TIMESTAMPDIFF(MINUTE, r.horaInicio, r.horaFinal)) AS minutosTotales\n"
+                + "FROM \n"
+                + "    tbl_reserva r\n"
+                + "JOIN \n"
+                + "    tbl_cancha c ON r.idCancha = c.idCancha\n"
+                + "GROUP BY \n"
+                + "    c.idCancha, c.ubicacion\n"
+                + "ORDER BY \n"
+                + "    c.idCancha ASC;";
+
+        try (Connection con = Conexion.getConexion()) {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int idCancha = rs.getInt("idCancha");
+                String ubicacion = rs.getString("ubicacion");
+                int veces = rs.getInt("numeroVecesAlquilada");
+                int minutosTotales = rs.getInt("minutosTotales");
+
+                int horas = minutosTotales / 60;
+                int minutos = minutosTotales % 60;
+                String formatoHHmm = String.format("%02d:%02d", horas, minutos);
+
+                ReporteOperativoDTO dto = new ReporteOperativoDTO(
+                        idCancha,
+                        ubicacion,
+                        veces,
+                        formatoHHmm
+                );
+                reporte.add(dto);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al mostrar reporte operativo: " + e.getMessage());
+        }
+
+        return reporte;
+    }
+
 }
