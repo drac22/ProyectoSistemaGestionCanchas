@@ -61,34 +61,35 @@ public class JFPrincipal extends javax.swing.JFrame {
         lblNombresApellidos = new javax.swing.JLabel();
         lblRol = new javax.swing.JLabel();
         bottonSalir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         panelDinamico = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelEstatico.setBackground(new java.awt.Color(255, 204, 204));
+        panelEstatico.setBackground(new java.awt.Color(204, 255, 204));
 
-        bottonReservar.setText("RESERVAR");
+        bottonReservar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/reservar.png"))); // NOI18N
         bottonReservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bottonReservarActionPerformed(evt);
             }
         });
 
-        bottonClientes.setText("CLIENTES");
+        bottonClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cliente.png"))); // NOI18N
         bottonClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bottonClientesActionPerformed(evt);
             }
         });
 
-        bottonReporte.setText("REPORTE");
+        bottonReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/informe.png"))); // NOI18N
         bottonReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bottonReporteActionPerformed(evt);
             }
         });
 
-        bottonEmpleado.setText("EMPLEADOS");
+        bottonEmpleado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/empleado.png"))); // NOI18N
         bottonEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bottonEmpleadoActionPerformed(evt);
@@ -106,6 +107,8 @@ public class JFPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo.png"))); // NOI18N
+
         javax.swing.GroupLayout panelEstaticoLayout = new javax.swing.GroupLayout(panelEstatico);
         panelEstatico.setLayout(panelEstaticoLayout);
         panelEstaticoLayout.setHorizontalGroup(
@@ -118,19 +121,23 @@ public class JFPrincipal extends javax.swing.JFrame {
                                 .addGap(71, 71, 71)
                                 .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(bottonEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bottonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(bottonClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bottonReservar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(bottonReservar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(bottonReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(panelEstaticoLayout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addGroup(panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblRol)
-                                    .addComponent(lblNombresApellidos))))
-                        .addGap(0, 79, Short.MAX_VALUE))
+                                    .addComponent(lblNombresApellidos)
+                                    .addComponent(lblRol))))
+                        .addGap(0, 83, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelEstaticoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(bottonSalir)))
                 .addContainerGap())
+            .addGroup(panelEstaticoLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelEstaticoLayout.setVerticalGroup(
             panelEstaticoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,15 +148,17 @@ public class JFPrincipal extends javax.swing.JFrame {
                 .addComponent(lblNombresApellidos)
                 .addGap(28, 28, 28)
                 .addComponent(lblRol)
-                .addGap(185, 185, 185)
+                .addGap(11, 11, 11)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
                 .addComponent(bottonReservar)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bottonClientes)
-                .addGap(42, 42, 42)
-                .addComponent(bottonReporte)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bottonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bottonEmpleado)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         panelDinamico.setBackground(new java.awt.Color(204, 255, 255));
@@ -162,7 +171,7 @@ public class JFPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelEstatico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE))
+                .addComponent(panelDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 708, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,6 +218,7 @@ public class JFPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bottonReporte;
     private javax.swing.JButton bottonReservar;
     private javax.swing.JButton bottonSalir;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblNombresApellidos;
     private javax.swing.JLabel lblRol;
     private javax.swing.JPanel panelDinamico;

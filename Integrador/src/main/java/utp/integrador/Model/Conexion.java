@@ -10,7 +10,7 @@ public class Conexion {
         var bd = "sistemagestioncanchas";
         var url = "jdbc:mysql://localhost:3306/" + bd;
         var usuario = "root";
-        var password = "root";
+        var password = "1234";
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, usuario, password);
